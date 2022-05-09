@@ -10,8 +10,34 @@
 <body>
     <script>
         $(function(){
-            $('body').append('<h1>Hello World!</h1>');
+            // $('body').append('<h1>Hello World!</h1>');
+
+
         });
+        function inptest(e){
+
+            // var num = $('.inp').not(e);
+            // console.log(num);
+            console.log(e);
+            var asss = $(e).parent().find("a").css("color","red");
+            console.log(asss);
+        }
     </script>
+    <div>
+        <input type="text" name="test" id="inp1" class="inp" onfocus="inptest(this)">
+        <a id="11" href="">1</a>
+    </div>
+    <div>
+        <input type="text" name="test" id="inp2" class="inp" onfocus="inptest(this)">
+        <a id="22" href="">2</a>
+    </div>
+    <div>
+        <input type="text" name="test" id="inp3" class="inp" onfocus="inptest(this)">
+        <a id="33" href="">3</a>
+    </div>
+    <div>
+        <input type="text" name="test" id="inp4" class="inp" onfocus="inptest(this)">
+        <a id="44" href="">4</a>
+    </div>
 </body>
 </html>
