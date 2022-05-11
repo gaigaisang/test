@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row clearfix">
+            <div id="div3" class="col-md-6 column">
+                <div class="">
+                    <br>
+                    <h1 class="display-4">Hello, Guys!</h1><br>
+                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
+                        attention to featured content or information.</p>
+                    <hr class="my-4">
+                    <p>It uses utility classes for typography and spacing to space content out within the larger
+                        container.</p>
+                    <br>
+                    <a class="btn btn-primary btn-lg" href="login.html" role="button">登录</a>
+                </div>
+            </div>
+            <div id="div5" class="col-md-6 column">
+                <form id="registerform">
+                    <div class="form-group">
+                        <label for="InputEmail1">Email address</label>
+                        <input type="email" name="email" class="form-control " id="InputEmail1"
+                            aria-describedby="emailHelp" onfocus="alertShow(this)">
+                        <small id="emailHelp" class="alert alert-secondary form-text text-muted">您可以使用任意邮箱，<footer
+                                class="blockquote-footer">如果为qq邮箱会默认使用改qq头像为初始头像 </footer></small>
+                        <div class="invalid-feedback">
+                            请输入正确的邮箱地址。
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputUsername">Username</label>
+                        <input type="username" name="username" class="form-control " id="InputUsername"
+                            aria-describedby="usernameHelp" onblur="isSave()" onfocus="alertShow(this)">
+                        <small id="usernameHelp"
+                            class="alert alert-secondary form-text text-muted">你可以使用字母、数字,和下划线</small>
+                        <div class="invalid-feedback">
+                            您只能输入字母和数字，且不能为空。
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password1">Password</label>
+                        <input type="password" name="password" class="form-control" id="Password1"
+                            onfocus="alertShow(this)" aria-describedby="password1Help">
+                        <small id="Password1Help" class="alert alert-secondary form-text text-muted">你可以使用8-20
+                            个字符的字母和数字</small>
+
+                        <div class="invalid-feedback">
+                            您的密码长度必须为 8-20 个字符，包含字母和数字，并且不得包含空格、特殊字符或表情符号。
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password2">Confirm Password</label>
+                        <input type="password" name="regpassword" class="form-control" id="Password2"
+                            data-toggle="popover" aria-describedby="password2Help" title="提示" data-content="密码与第一次不匹配"
+                            onfocus="alertShow(this)">
+                        <small id="Password2Help"
+                            class="alert alert-secondary form-text text-muted">需与第一次输入的密码相同</small>
+
+                        <div class="invalid-feedback">
+                            您输入的密码必须与第一次输入的密码相同。
+                        </div>
+                        <!--                    <small id="passwordHelp2" class="alert alert-secondary form-text text-muted">你可以使用字母、数字,和下划线</small>-->
+                    </div>
+
+                    <button id="submitbtn" type="submit" class="btn btn-primary">注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var email = $("#InputEmail1");
+        var username = $("#InputUsername");
+        var password = $("#Password1");
+        var regpassword = $("#Password2");
+        $(function () {
+
+            $(".alert").hide();
+            $("#submitbtn").click(function () {
+                if (email.hasClass("is-valid") && username.hasClass("is-valid") && password.hasClass("is-valid") && regpassword.hasClass("is-valid") && email.val() != "" && username.val() != "" && password.val() != "" && regpassword.val() != "") {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        function isSave() {
+
+            if (1) {
+                $("#usernameHelp").addClass("alert-danger inpdanger").removeClass("alert-success is-valid").html("用户名已存在");
+            } else {
+                $("#usernameHelp").addClass("alert-success").removeClass("alert-danger").html("用户名可用");
+            }
+
+        }
+        function alertShow(e) {
+            console.log(e)
+            $(".alert").not('.inpdanger').hide();
+            $(e).parent().find("small").show();
+            var emailreg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+            var usernamereg = /^[a-zA-Z0-9_]{8,20}$/;
+            var passwordreg = /^[a-zA-Z0-9]{8,20}$/;
+
+            if (email.val()) {
+                if (emailreg.test(email.val())) {
+                    email.removeClass("is-invalid").addClass("is-valid");
+                } else {
+                    email.addClass("is-invalid").removeClass("is-valid");
+                }
+            }
+            if (username.val()) {
+                if (usernamereg.test(username.val())) {
+
+                    username.removeClass("is-invalid").addClass("is-valid");
+                } else {
+                    username.addClass("is-invalid").removeClass("is-valid");
+                }
+            }
+            if (password.val()) {
+                if (passwordreg.test(password.val())) {
+                    password.removeClass("is-invalid").addClass("is-valid");
+                } else {
+                    password.addClass("is-invalid").removeClass("is-valid");
+                }
+            }
+            if (regpassword.val()) {
+                if (password.val() == regpassword.val()) {
+                    regpassword.removeClass("is-invalid").addClass("is-valid");
+                } else {
+                    regpassword.addClass("is-invalid").removeClass("is-valid");
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
